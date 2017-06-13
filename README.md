@@ -1,8 +1,24 @@
 # Minispec::Rails
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/minispec/rails`. To experiment with that code, run `bin/console` for an interactive prompt.
+Use Minitest::Spec in Rails.
 
-TODO: Delete this and the text above, and describe your gem
+## Why another minitest rails gem?
+
+There are plenty out there, and I'm sure they all work just fine.
+I have personally never used any of them because it was never a big deal to insert Minitest::Spec into any Rails project manually with just a few lines of code.
+The fewer gems/lines of code there are, the better.
+But obviously that's not very helpful to anyone who just wants it to work with a simple `gem blah`, done (including me).
+
+## Goals
+
+* Get running in Rails with Minitest::Spec with minimal lines of code.
+
+## Not Goals
+
+* Help with migrating from "Rails style" to Spec style. I don't recommend anyone convert any test suite to spec style for the sake of converting. You really don't gain all that much.
+* Support multiple styles. You're probably here to use Spec style, so use Spec style. Why would you want to mix and match?
+* Support old Rails versions. Since I don't recommend converting, I don't see a big use case for supporting older Rails versions.
+* (for now at least) Rails generators. I personally don't find them all that useful. If there is enough demand for it, I might do it, but in the interest of keeping this gem small, I'm going to skip them.
 
 ## Installation
 
@@ -22,17 +38,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Once this gem is required, you can immediately start using it to `describe` your tests.
+There is 1 exception: SystemTests.
+In order to lazy-load, just require the workaround before defining `ApplicationSystemTestCase`:
 
-## Development
+```ruby
+# test/application_system_test_case.rb.
+require "test_helper"
+require 'minispec/rails/system_test' # Add this line here.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+  driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+end
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+See the [example rails app](https://github.com/ordinaryzelig/minispec-rails-example).
 
-## Contributing
+## TODO
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/minispec-rails.
+* Ask Rails to add `run_load_hooks` for ActionDispatch::SystemTestCase so we can lazy load like the others.
+* Custom file types? I like file types like `spec/models/my_model.spec.rb`. But maybe later.
 
 ## License
 
