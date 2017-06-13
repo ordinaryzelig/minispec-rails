@@ -54,7 +54,9 @@ end
 
 ### Spec Types
 
-* `describe` any ActionController, the test will be a subclass of ActionDispatch::IntegrationTest.
+* `describe` any AbstractController::Base subclass, the test will be a subclass of ActionDispatch::IntegrationTest.
+* `describe` any ActiveJob::Base subclass, the test will be a subclass of ActiveJob::TestCase.
+* `describe` any ActionMailer::Base subclass, the test will be a subclass of ActiveJob::TestCase.
 * `describe` any String, the test will be a subclass of ActionDispatch::SystemTestCase.
 * `describe` anything else, the test will be a subclass of ActiveSupport::TestCase.
 
