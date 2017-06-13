@@ -52,6 +52,12 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 end
 ```
 
+### Spec Types
+
+* `describe` any ActionController, the test will be a subclass of ActionDispatch::IntegrationTest.
+* `describe` any String, the test will be a subclass of ActionDispatch::SystemTestCase.
+* `describe` anything else, the test will be a subclass of ActiveSupport::TestCase.
+
 See the [example rails app](https://github.com/ordinaryzelig/minispec-rails-example).
 
 ## TODO

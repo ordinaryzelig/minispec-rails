@@ -6,7 +6,9 @@ ActionDispatch::SystemTestCase.extend(
     def inherited(*)
       super
       unless Minitest::Spec::TYPES.find { |matcher, type| type == ApplicationSystemTestCase }
-        Minitest::Spec.register_spec_type(//, ApplicationSystemTestCase)
+        Minitest::Spec.register_spec_type(ApplicationSystemTestCase) do |desc|
+          desc.is_a?(String)
+        end
       end
     end
   end
