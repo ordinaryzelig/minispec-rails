@@ -71,7 +71,6 @@ In order to lazy-load, just require the workaround before defining `ApplicationS
 ```ruby
 # test/application_system_test_case.rb.
 require "test_helper"
-### 
 require 'minispec/rails/system_test' # <- Add this line here.
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
