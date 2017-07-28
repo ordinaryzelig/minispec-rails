@@ -66,7 +66,7 @@ See the [example rails app](https://github.com/ordinaryzelig/minispec-rails-exam
 
 ### System tests
 
-In order to lazy-load, just require the workaround before defining `ApplicationSystemTestCase`:
+Require this before defining `ApplicationSystemTestCase` (see lib/minispec/rails/system_test.rb):
 
 ```ruby
 # test/application_system_test_case.rb.
