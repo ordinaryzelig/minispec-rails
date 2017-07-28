@@ -7,7 +7,7 @@ ActionDispatch::SystemTestCase.extend(
       super
       unless Minitest::Spec::TYPES.find { |matcher, type| type == ApplicationSystemTestCase }
         Minitest::Spec.register_spec_type(ApplicationSystemTestCase) do |desc|
-          desc.is_a?(String)
+          desc.to_s =~ /system$/i
         end
       end
     end

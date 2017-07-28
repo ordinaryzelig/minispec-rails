@@ -6,18 +6,24 @@ Use Minitest::Spec in Rails.
 
 There are plenty out there, and I'm sure they all work just fine.
 I have personally never used any of them because it was never a big deal to insert Minitest::Spec into any Rails project manually with just a few lines of code.
-The fewer gems/lines of code there are, the better.
-But obviously that's not very helpful to anyone who just wants it to work with a simple `gem blah`, done (including me).
+Fewer gems/lines of code your project = better.
+But I still want the convenience of a gem to get projects started quickly.
+
+This gem gets you PURE minitest spec in a whopping 50 lines of code, and that's counting blank lines, comments, requires, and a (hopefully temporary) workaround for system tests.
+There's no fancy tricks going on here.
+This is plain jane minitest.
+What you get is PURE spec awesomeness.
+And by "PURE" I mean just `describe`s. No more defining classes on your own.
 
 ## Goals
 
 * Get running in Rails with Minitest::Spec with minimal lines of code both in installation and the gem itself.
 
-## Not Goals
+## NOT Goals
 
-* Help with migrating from "Rails style" to Spec style. I don't recommend anyone convert any test suite to spec style for the sake of converting. You really don't gain all that much.
-* Support multiple styles. You're probably here to use Spec style, so use Spec style. Why would you want to mix and match?
-* Support old Rails versions. Since I don't recommend converting, I don't see a big use case for supporting older Rails versions.
+* Help with migrating from "Rails style" to Spec style. I don't recommend anyone convert any test suite to spec style for the sake of converting. You really don't gain all that much by converting.
+* Support multiple styles (i.e. unit and spec). You're probably here to use Spec style, so use Spec style. Why would you want to mix and match? Don't define test classes. Use `describe`.
+* Support old Rails versions. Since I don't recommend converting, it doesn't seem worth it to support older Rails versions. I'm not going to explicitly define a minimum Rails version requirement, but for development I'm going to start with 5.1.1 (see the example app).
 * (for now at least) Rails generators. I personally don't find them all that useful. If there is enough demand for it and/or someone contributes it, I might do it, but in the interest of keeping this gem small, I'm going to skip them.
 
 ## Installation
@@ -39,7 +45,24 @@ Or install it yourself as:
 ## Usage
 
 Once this gem is required, you can immediately start using it to `describe` your tests.
-There is 1 exception: system tests.
+There is 1 exception: system tests (see below).
+
+### Spec Types
+
+The key to getting the right type of test is to describe the right thing.
+
+| Test subclass                   | describe example                  |
+| ------------------------------- | --------------------------------- |
+| ActionDispatch::IntegrationTest | `describe MyController`           |
+| ActiveJob::TestCase             | `describe MyJob`                  |
+| ActionMailer::TestCase          | `describe MyMailer`               |
+| ActionDispatch::SystemTestCase  | `describe 'Admin system'`         |
+| ActionDispatch::IntegrationTest | `describe 'Customer integration'` |
+| ActiveSupport::TestCase         | `describe 'AnythingElse'`         |
+
+### Example app
+
+See the [example rails app](https://github.com/ordinaryzelig/minispec-rails-example).
 
 ### System tests
 
@@ -55,18 +78,6 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
 end
 ```
-
-### Spec Types
-
-* `describe` any AbstractController::Base subclass, the test will be a subclass of ActionDispatch::IntegrationTest.
-* `describe` any ActiveJob::Base subclass, the test will be a subclass of ActiveJob::TestCase.
-* `describe` any ActionMailer::Base subclass, the test will be a subclass of ActiveJob::TestCase.
-* `describe` any String, the test will be a subclass of ActionDispatch::SystemTestCase.
-* `describe` anything else, the test will be a subclass of ActiveSupport::TestCase.
-
-### Example app
-
-See the [example rails app](https://github.com/ordinaryzelig/minispec-rails-example).
 
 ## TODO
 

@@ -14,7 +14,8 @@ module Minispec
 
     ActiveSupport.on_load(:action_dispatch_integration_test) do
       Minitest::Spec.register_spec_type(ActionDispatch::IntegrationTest) do |desc|
-        desc.is_a?(Class) && desc < AbstractController::Base
+        (desc.is_a?(Class) && desc < AbstractController::Base) ||
+          (desc.to_s =~ /integration$/i)
       end
     end
 
