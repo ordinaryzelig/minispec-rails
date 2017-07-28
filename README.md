@@ -21,10 +21,10 @@ And by "PURE" I mean just `describe`s. No more defining classes on your own.
 
 ## NOT Goals
 
-* Help with migrating from "Rails style" to Spec style. I don't recommend anyone convert any test suite to spec style for the sake of converting. You really don't gain all that much by converting.
-* Support multiple styles (i.e. unit and spec). You're probably here to use Spec style, so use Spec style. Why would you want to mix and match? Don't define test classes. Use `describe`.
-* Support old Rails versions. Since I don't recommend converting, it doesn't seem worth it to support older Rails versions. I'm not going to explicitly define a minimum Rails version requirement, but for development I'm going to start with 5.1.1 (see the example app).
-* (for now at least) Rails generators. I personally don't find them all that useful. If there is enough demand for it and/or someone contributes it, I might do it, but in the interest of keeping this gem small, I'm going to skip them.
+* **Help with migrating from "Rails style" to Spec style.** I don't recommend anyone convert any test suite to spec style for the sake of converting. You really don't gain all that much by converting.
+* **Support multiple styles (i.e. unit and spec).** You're probably here to use Spec style, so use Spec style. Why would you want to mix and match? Don't define test classes. Use `describe`.
+* **Support old Rails versions.** Since I don't recommend converting, it doesn't seem worth it to support older Rails versions. I'm not going to explicitly define a minimum Rails version requirement, but for development I'm going to start with 5.1.1 (see the example app).
+* **(for now at least) Rails generators.** I personally don't find them all that useful. If there is enough demand for it and/or someone contributes it, I might do it, but in the interest of keeping this gem small, I'm going to skip them.
 
 ## Installation
 
