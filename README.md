@@ -7,9 +7,9 @@ Use Minitest::Spec in Rails.
 There are plenty out there, and I'm sure they all work just fine.
 I have personally never used any of them because it was never a big deal to insert Minitest::Spec into any Rails project manually with just a few lines of code.
 Fewer gems/lines of code your project = better.
-But I still want the convenience of a gem to get projects started quickly.
+But it's still nice to have the convenience of a gem to get Rails testing started quickly.
 
-This gem gets you PURE minitest spec in a whopping 50 lines of code, and that's counting blank lines, comments, requires, and a (hopefully temporary) workaround for system tests.
+This gem gets you PURE minitest spec in a whopping 50 lines of code, and that's counting blank lines, comments, `require`s, and a (hopefully temporary) workaround for system tests.
 There's no fancy tricks going on here.
 This is plain jane minitest.
 What you get is PURE spec awesomeness.
@@ -51,14 +51,14 @@ There is 1 exception: system tests (see below).
 
 The key to getting the right type of test is to describe the right thing.
 
-| Test subclass                   | describe example                  |
-| ------------------------------- | --------------------------------- |
-| ActionDispatch::IntegrationTest | `describe MyController`           |
-| ActiveJob::TestCase             | `describe MyJob`                  |
-| ActionMailer::TestCase          | `describe MyMailer`               |
-| ActionDispatch::SystemTestCase  | `describe 'Admin system'`         |
-| ActionDispatch::IntegrationTest | `describe 'Customer integration'` |
-| ActiveSupport::TestCase         | `describe 'AnythingElse'`         |
+| Test type     | Test subclass                   | `describe` example                |
+| ------------- | ------------------------------- | --------------------------------- |
+| Controller    | ActionDispatch::IntegrationTest | `describe MyController`           |
+| Job           | ActiveJob::TestCase             | `describe MyJob`                  |
+| Mailer        | ActionMailer::TestCase          | `describe MyMailer`               |
+| System        | ActionDispatch::SystemTestCase  | `describe 'Admin system'`         |
+| Integration   | ActionDispatch::IntegrationTest | `describe 'Customer integration'` |
+| Anything else | ActiveSupport::TestCase         | `describe 'any object'`           |
 
 ### Example app
 
